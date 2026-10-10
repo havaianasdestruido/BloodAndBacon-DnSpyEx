@@ -392,7 +392,7 @@ namespace Blood
 					if (n.dupe[i].move == 1)
 					{
 						n.dupe[i].UpdateNormally(ref heightData, ref normalData);
-						if (flag && (!n.dupe[i].flipinspace || n.dupe[i].flipTimer > 3f) && n.dupe[i].emo == astroDupe.emotion.safe && n.dupe[i].loc == astroDupe.where.outofTruck && Vector3.Distance(astro.rovpos, n.dupe[i].mypos) < 50f)
+						if (flag && (!n.dupe[i].flipinspace || n.dupe[i].flipTimer > 3f) && n.dupe[i].emo == astroDupe.emotion.safe && n.dupe[i].loc == astroDupe.where.outofTruck && Vector3.DistanceSquared(astro.rovpos, n.dupe[i].mypos) < 2500f)
 						{
 							astro.someonedied = true;
 							this.sc.manyell.Play(this.sc.ev, (float)this.rand1.Next(-20, 30) / 100f, 0f);

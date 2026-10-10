@@ -180,7 +180,7 @@ namespace Blood
 		{
 			string text = "-1";
 			bool flag = false;
-			if (Vector3.Distance(campos, this.kePos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kePos) < 2500f)
 			{
 				if (!this.keHide)
 				{
@@ -195,7 +195,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kbPos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kbPos) < 2500f)
 			{
 				if (!this.kbHide)
 				{
@@ -209,7 +209,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kmPos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kmPos) < 2500f)
 			{
 				if (!this.kmHide)
 				{
@@ -224,7 +224,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kgPos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kgPos) < 2500f)
 			{
 				if (!this.kgHide)
 				{
@@ -239,7 +239,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kh1Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kh1Pos) < 2500f)
 			{
 				if (!this.kh1Hide)
 				{
@@ -253,7 +253,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kh2Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kh2Pos) < 2500f)
 			{
 				if (!this.kh2Hide)
 				{
@@ -267,7 +267,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kh3Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kh3Pos) < 2500f)
 			{
 				if (!this.kh3Hide)
 				{
@@ -281,7 +281,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kf1Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kf1Pos) < 2500f)
 			{
 				if (!this.kf1Hide)
 				{
@@ -296,7 +296,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kf2Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kf2Pos) < 2500f)
 			{
 				if (!this.kf2Hide)
 				{
@@ -311,7 +311,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kf3Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kf3Pos) < 2500f)
 			{
 				if (!this.kf3Hide)
 				{
@@ -326,7 +326,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.ka1Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.ka1Pos) < 2500f)
 			{
 				if (!this.ka1Hide)
 				{
@@ -340,7 +340,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.ka2Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.ka2Pos) < 2500f)
 			{
 				if (!this.ka2Hide)
 				{
@@ -354,7 +354,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.ka3Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.ka3Pos) < 2500f)
 			{
 				if (!this.ka3Hide)
 				{
@@ -368,7 +368,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kc1Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kc1Pos) < 2500f)
 			{
 				if (!this.kc1Hide)
 				{
@@ -382,7 +382,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kc2Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kc2Pos) < 2500f)
 			{
 				if (!this.kc2Hide)
 				{
@@ -396,7 +396,7 @@ namespace Blood
 				}
 				return text;
 			}
-			if (Vector3.Distance(campos, this.kc3Pos) < 50f)
+			if (Vector3.DistanceSquared(campos, this.kc3Pos) < 2500f)
 			{
 				if (!this.kc3Hide)
 				{
@@ -412,11 +412,11 @@ namespace Blood
 			}
 			Vector3 vector = (this.flashlight2pos + this.gogglepos) / 2f;
 			Vector3 vector2 = Vector3.Normalize(Vector3.Transform(new Vector3(0f, 0f, 1f), Matrix.CreateRotationX(npctilt) * Matrix.CreateRotationY(npcrot)));
-			this.nearItems = Vector3.Distance(campos, vector) < 700f;
+			this.nearItems = Vector3.DistanceSquared(campos, vector) < 490000f;
 			this.nearExit = Vector3.Distance(campos, new Vector3(2885f, -250f, 4485f)) < 700f;
 			if (this.nearItems)
 			{
-				if (Vector3.Distance(campos, this.flashlight1pos) < 70f && !this.keyFlashlight1)
+				if (Vector3.DistanceSquared(campos, this.flashlight1pos) < 4900f && !this.keyFlashlight1)
 				{
 					Vector3 vector3 = Vector3.Normalize(this.flashlight1pos - campos);
 					if (Vector3.Dot(vector2, vector3) > 0.65f)
@@ -424,7 +424,7 @@ namespace Blood
 						text = "4";
 					}
 				}
-				if (Vector3.Distance(campos, this.flashlight2pos) < 70f && !this.keyFlashlight2)
+				if (Vector3.DistanceSquared(campos, this.flashlight2pos) < 4900f && !this.keyFlashlight2)
 				{
 					Vector3 vector4 = Vector3.Normalize(this.flashlight2pos - campos);
 					if (Vector3.Dot(vector2, vector4) > 0.65f)
@@ -432,7 +432,7 @@ namespace Blood
 						text = "5";
 					}
 				}
-				if (Vector3.Distance(campos, this.flashlight3pos) < 70f && !this.keyFlashlight3)
+				if (Vector3.DistanceSquared(campos, this.flashlight3pos) < 4900f && !this.keyFlashlight3)
 				{
 					Vector3 vector5 = Vector3.Normalize(this.flashlight3pos - campos);
 					if (Vector3.Dot(vector2, vector5) > 0.65f)
@@ -440,7 +440,7 @@ namespace Blood
 						text = "6";
 					}
 				}
-				if (Vector3.Distance(campos, this.ammoboxpos) < 70f && !this.keyAmmobox && this.sc.ammoboxCount > 0)
+				if (Vector3.DistanceSquared(campos, this.ammoboxpos) < 4900f && !this.keyAmmobox && this.sc.ammoboxCount > 0)
 				{
 					Vector3 vector6 = Vector3.Normalize(this.ammoboxpos - campos);
 					if (Vector3.Dot(vector2, vector6) > 0.65f)
@@ -448,7 +448,7 @@ namespace Blood
 						text = "7";
 					}
 				}
-				if (Vector3.Distance(campos, this.gogglepos) < 70f && !this.keyGoggles)
+				if (Vector3.DistanceSquared(campos, this.gogglepos) < 4900f && !this.keyGoggles)
 				{
 					Vector3 vector7 = Vector3.Normalize(this.gogglepos - campos);
 					if (Vector3.Dot(vector2, vector7) > 0.65f)
@@ -457,7 +457,7 @@ namespace Blood
 					}
 				}
 				this.atGears = false;
-				if (Vector3.Distance(campos, this.cogpos) < 70f && !this.keyCog && this.sc.cogCount > 0)
+				if (Vector3.DistanceSquared(campos, this.cogpos) < 4900f && !this.keyCog && this.sc.cogCount > 0)
 				{
 					Vector3 vector8 = Vector3.Normalize(this.cogpos - campos);
 					if (Vector3.Dot(vector2, vector8) > 0.65f)
@@ -466,7 +466,7 @@ namespace Blood
 						this.atGears = true;
 					}
 				}
-				if (Vector3.Distance(campos, this.mappos) < 70f && !this.keyMap)
+				if (Vector3.DistanceSquared(campos, this.mappos) < 4900f && !this.keyMap)
 				{
 					Vector3 vector9 = Vector3.Normalize(this.mappos - campos);
 					if (Vector3.Dot(vector2, vector9) > 0.65f)
@@ -474,7 +474,7 @@ namespace Blood
 						text = "10";
 					}
 				}
-				if (Vector3.Distance(campos, this.exitkeypos) < 70f && !this.keyExitkey)
+				if (Vector3.DistanceSquared(campos, this.exitkeypos) < 4900f && !this.keyExitkey)
 				{
 					Vector3 vector10 = Vector3.Normalize(this.exitkeypos - campos);
 					if (Vector3.Dot(vector2, vector10) > 0.65f)
@@ -483,7 +483,7 @@ namespace Blood
 					}
 				}
 			}
-			if (Vector3.Distance(campos, this.skullpos) < 70f && !this.keySkull1)
+			if (Vector3.DistanceSquared(campos, this.skullpos) < 4900f && !this.keySkull1)
 			{
 				Vector3 vector11 = Vector3.Normalize(this.skullpos - campos);
 				if (Vector3.Dot(vector2, vector11) > 0.65f)
@@ -491,7 +491,7 @@ namespace Blood
 					return "13";
 				}
 			}
-			if (Vector3.Distance(campos, this.skullpos) < 70f && !this.keySkull2)
+			if (Vector3.DistanceSquared(campos, this.skullpos) < 4900f && !this.keySkull2)
 			{
 				Vector3 vector12 = Vector3.Normalize(this.skullpos - campos);
 				if (Vector3.Dot(vector2, vector12) > 0.65f)
@@ -499,7 +499,7 @@ namespace Blood
 					return "14";
 				}
 			}
-			if (Vector3.Distance(campos, this.skullpos) < 70f && !this.keySkull3)
+			if (Vector3.DistanceSquared(campos, this.skullpos) < 4900f && !this.keySkull3)
 			{
 				Vector3 vector13 = Vector3.Normalize(this.skullpos - campos);
 				if (Vector3.Dot(vector2, vector13) > 0.65f)
@@ -507,7 +507,7 @@ namespace Blood
 					return "15";
 				}
 			}
-			if (Vector3.Distance(campos, this.rs2Pos) < 70f && this.rsFound)
+			if (Vector3.DistanceSquared(campos, this.rs2Pos) < 4900f && this.rsFound)
 			{
 				Vector3 vector14 = Vector3.Normalize(this.rs2Pos - campos);
 				if (Vector3.Dot(vector2, vector14) > 0.65f)
@@ -515,7 +515,7 @@ namespace Blood
 					return "16";
 				}
 			}
-			if (Vector3.Distance(campos, this.tt2Pos) < 70f && this.ttFound)
+			if (Vector3.DistanceSquared(campos, this.tt2Pos) < 4900f && this.ttFound)
 			{
 				Vector3 vector15 = Vector3.Normalize(this.tt2Pos - campos);
 				if (Vector3.Dot(vector2, vector15) > 0.65f)
@@ -523,7 +523,7 @@ namespace Blood
 					return "17";
 				}
 			}
-			if (Vector3.Distance(campos, this.tuskpos) < 70f && !this.keyTusk1)
+			if (Vector3.DistanceSquared(campos, this.tuskpos) < 4900f && !this.keyTusk1)
 			{
 				Vector3 vector16 = Vector3.Normalize(this.tuskpos - campos);
 				if (Vector3.Dot(vector2, vector16) > 0.65f)
@@ -531,7 +531,7 @@ namespace Blood
 					return "18";
 				}
 			}
-			if (Vector3.Distance(campos, this.tuskpos) < 70f && !this.keyTusk2)
+			if (Vector3.DistanceSquared(campos, this.tuskpos) < 4900f && !this.keyTusk2)
 			{
 				Vector3 vector17 = Vector3.Normalize(this.tuskpos - campos);
 				if (Vector3.Dot(vector2, vector17) > 0.65f)
@@ -539,7 +539,7 @@ namespace Blood
 					return "19";
 				}
 			}
-			if (Vector3.Distance(campos, this.tuskpos) < 70f && !this.keyTusk3)
+			if (Vector3.DistanceSquared(campos, this.tuskpos) < 4900f && !this.keyTusk3)
 			{
 				Vector3 vector18 = Vector3.Normalize(this.tuskpos - campos);
 				if (Vector3.Dot(vector2, vector18) > 0.65f)
@@ -554,7 +554,7 @@ namespace Blood
 		public int update(Vector3 mypos, Vector3 campos, int altcam)
 		{
 			int num = -1;
-			if (this.sc.dayTime == "pm" && this.sc.hats[2] == 0 && Vector3.Distance(mypos, this.keypos1) < 50f)
+			if (this.sc.dayTime == "pm" && this.sc.hats[2] == 0 && Vector3.DistanceSquared(mypos, this.keypos1) < 2500f)
 			{
 				this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 				this.sc.hats[2] = 1;
@@ -577,7 +577,7 @@ namespace Blood
 			}
 			if (this.sc.hordemode)
 			{
-				if (this.sc.hats[9] == 0 && Vector3.Distance(mypos, this.keypos6) < 50f)
+				if (this.sc.hats[9] == 0 && Vector3.DistanceSquared(mypos, this.keypos6) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hatindex = 9;
@@ -588,7 +588,7 @@ namespace Blood
 					}
 					num = 9;
 				}
-				if (this.sc.hats[10] == 0 && Vector3.Distance(mypos, this.keypos7) < 50f)
+				if (this.sc.hats[10] == 0 && Vector3.DistanceSquared(mypos, this.keypos7) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hatindex = 10;
@@ -599,7 +599,7 @@ namespace Blood
 					}
 					num = 10;
 				}
-				if (this.sc.hats[11] == 0 && Vector3.Distance(mypos, this.keypos8) < 50f)
+				if (this.sc.hats[11] == 0 && Vector3.DistanceSquared(mypos, this.keypos8) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hatindex = 11;
@@ -613,7 +613,7 @@ namespace Blood
 			}
 			else
 			{
-				if (this.sc.revengeDay > 0 && this.sc.hats[1] == 0 && Vector3.Distance(mypos, this.keypos2) < 50f)
+				if (this.sc.revengeDay > 0 && this.sc.hats[1] == 0 && Vector3.DistanceSquared(mypos, this.keypos2) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hats[1] = 1;
@@ -634,7 +634,7 @@ namespace Blood
 						this.sc.trophy.win(this.sc.trophy.madhatter);
 					}
 				}
-				if (this.sc.dayTime == "am" && this.sc.hats[3] == 0 && Vector3.Distance(campos, this.keypos3) < 50f)
+				if (this.sc.dayTime == "am" && this.sc.hats[3] == 0 && Vector3.DistanceSquared(campos, this.keypos3) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hats[3] = 1;
@@ -656,7 +656,7 @@ namespace Blood
 						this.sc.trophy.win(this.sc.trophy.madhatter);
 					}
 				}
-				if (this.sc.currentDay % 20 == 0 && this.sc.hats[4] == 0 && Vector3.Distance(campos, this.keypos4) < 50f)
+				if (this.sc.currentDay % 20 == 0 && this.sc.hats[4] == 0 && Vector3.DistanceSquared(campos, this.keypos4) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hats[4] = 1;
@@ -677,7 +677,7 @@ namespace Blood
 						this.sc.trophy.win(this.sc.trophy.madhatter);
 					}
 				}
-				if (altcam == 1 && this.sc.hats[5] == 0 && Vector3.Distance(campos, this.keypos5) < 50f)
+				if (altcam == 1 && this.sc.hats[5] == 0 && Vector3.DistanceSquared(campos, this.keypos5) < 2500f)
 				{
 					this.sc.pickup1.Play(this.sc.ev, 0.1f, 0f);
 					this.sc.hats[5] = 1;

@@ -211,7 +211,7 @@ namespace Blood
 		// Token: 0x06000977 RID: 2423 RVA: 0x00254B14 File Offset: 0x00252D14
 		private Matrix RotateToFaceE(Vector3 O, Vector3 P, Vector3 U, Matrix mm, ref bool turning, Matrix tilt)
 		{
-			if (Vector3.Distance(O, P) < 5f)
+			if (Vector3.DistanceSquared(O, P) < 25f)
 			{
 				return mm;
 			}
@@ -1442,7 +1442,7 @@ namespace Blood
 			c.closestIntersection = 10000f;
 			c.ignorebounds = true;
 			c.RayInteresectGeneric(this.cursorRay, this.buildingMatrix, ref c.tunnelvertices3, ref flag);
-			if ((enemyDupe.isChasing == p || enemyDupe.isChasing == -1) && Vector3.Distance(this.campos, n.dupe[p].enemypos) > 100f)
+			if ((enemyDupe.isChasing == p || enemyDupe.isChasing == -1) && Vector3.DistanceSquared(this.campos, n.dupe[p].enemypos) > 10000f)
 			{
 				BoundingSphere boundingSphere = default(BoundingSphere);
 				boundingSphere.Center = this.campos;

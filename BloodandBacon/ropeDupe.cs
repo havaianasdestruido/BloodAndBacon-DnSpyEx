@@ -144,7 +144,7 @@ namespace Blood
 				{
 					this.fric[i] = 0.999f;
 				}
-				if (!this.chainBump && Vector3.Distance(vector, this.player1) < 15f && i > this.start + 2)
+				if (!this.chainBump && Vector3.DistanceSquared(vector, this.player1) < 225f && i > this.start + 2)
 				{
 					Vector3 vector2 = Vector3.Normalize(vector - this.player1) * 4f;
 					this.aX[i] = vector2.X;
@@ -152,7 +152,7 @@ namespace Blood
 					this.aZ[i] = vector2.Z;
 					this.chainBump = true;
 				}
-				if (!this.chainBump && Vector3.Distance(vector, this.player2) < 15f && i > this.start + 2)
+				if (!this.chainBump && Vector3.DistanceSquared(vector, this.player2) < 225f && i > this.start + 2)
 				{
 					Vector3 vector3 = Vector3.Normalize(vector - this.player2) * 4f;
 					this.aX[i] = vector3.X;
@@ -186,7 +186,7 @@ namespace Blood
 				}
 				for (int j = 0; j < pos.Count; j++)
 				{
-					if (!this.chainBump && Vector3.Distance(vector, pos[j]) < 15f && i > this.start + 2)
+					if (!this.chainBump && Vector3.DistanceSquared(vector, pos[j]) < 225f && i > this.start + 2)
 					{
 						Vector3 vector2 = Vector3.Normalize(vector - pos[j]) * 4f;
 						this.aX[i] = vector2.X;

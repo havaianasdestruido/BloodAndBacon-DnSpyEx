@@ -341,7 +341,7 @@ namespace Blood
 						this.switchClip(this.walkClip);
 						if (this.emo == astroDupe.emotion.stranded)
 						{
-							if (Vector3.Distance(this.mypos, astroDupe.farmLocation) < 3000f)
+							if (Vector3.DistanceSquared(this.mypos, astroDupe.farmLocation) < 9000000f)
 							{
 								this.emo = astroDupe.emotion.justsaved;
 								Overlay.manbouy = Vector3.Zero;
