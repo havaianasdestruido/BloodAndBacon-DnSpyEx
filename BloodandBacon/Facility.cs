@@ -1109,7 +1109,7 @@ namespace Blood
 					if (this.clickList.Contains(num))
 					{
 						Vector3 vector = Vector3.Transform(Vector3.Zero, this.clickLocation[num] * this.faciltyMatrix);
-						if (Vector3.Distance(vector, this.campos) > 100f)
+						if (Vector3.DistanceSquared(vector, this.campos) > 10000f)
 						{
 							this.sc.door.Play(this.sc.ev * 0.2f, -0.2f, 0f);
 							this.pointer[num] -= 10;

@@ -1120,7 +1120,7 @@ namespace Blood
 			for (int i = 0; i < gem.Inst.Count; i++)
 			{
 				Vector3 mypos = gem.Inst[i].mypos;
-				if (this.sc.equip[3] == 1 && Vector3.Distance(mypos, this.bucketRegion1[1]) < 60f)
+				if (this.sc.equip[3] == 1 && Vector3.DistanceSquared(mypos, this.bucketRegion1[1]) < 3600f)
 				{
 					int num = 0;
 					float num2 = 0f;
@@ -2589,7 +2589,7 @@ namespace Blood
 							{
 								this.overlay.cellAMT++;
 								this.overlay.cellTick = 0f;
-								if (Vector3.Distance(this.campos, this.rover.position) < 1000f)
+								if (Vector3.DistanceSquared(this.campos, this.rover.position) < 1000000f)
 								{
 									float num23 = (float)this.overlay.cellAMT / 101.1f;
 									if (this.overlay.cellAMT < 100 && (this.overlay.cellAMT % 5 == 0 || this.overlay.cellAMT > 95))
@@ -4712,7 +4712,7 @@ namespace Blood
 						this.shadowEffect.Parameters["projection"].SetValue(Matrix.CreatePerspectiveFieldOfView(0.785f, 1f, 5f, 5000f));
 						this.LanderShadow.Meshes[0].Draw();
 					}
-					if (this.vehicleindex == 1 || (this.vehicleindex == 3 && Vector3.Distance(this.aCampos, this.rover.position) <= 2000f))
+					if (this.vehicleindex == 1 || (this.vehicleindex == 3 && Vector3.DistanceSquared(this.aCampos, this.rover.position) <= 4000000f))
 					{
 						float num2 = 0.8f;
 						if (this.vehicleindex == 3)
