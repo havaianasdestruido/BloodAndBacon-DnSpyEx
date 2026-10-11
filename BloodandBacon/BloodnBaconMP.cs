@@ -25681,7 +25681,7 @@ namespace Blood
 		// Token: 0x060002CD RID: 717 RVA: 0x000BAA34 File Offset: 0x000B8C34
 		private void debrisBlood(ref Vector3 spin, ref Vector3 old, ref Vector3 mypos, float scale, float dist, int cc, float age, bool poofy)
 		{
-			if (Vector3.Distance(old, mypos) < scale * 0.1f)
+			if (Vector3.DistanceSquared(old, mypos) < (scale * 0.1f) * (scale * 0.1f))
 			{
 				return;
 			}
