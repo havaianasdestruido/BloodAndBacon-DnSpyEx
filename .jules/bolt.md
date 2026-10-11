@@ -1,3 +1,3 @@
-## $(date +%Y-%m-%d) - Optimize Vector3.Distance
-**Learning:** Math.Sqrt is a relatively expensive operation, and it's called under the hood in `Vector3.Distance`. XNA/Monogame provides `Vector3.DistanceSquared` which avoids the square root and is faster. For many comparisons against a constant threshold (`Vector3.Distance(a, b) < 50f`), we can square the threshold instead (`Vector3.DistanceSquared(a, b) < 2500f`).
-**Action:** Replace `Vector3.Distance` with `Vector3.DistanceSquared` where we are comparing to constant floats across game logic.
+## 2024-05-15 - Vector3 Distance Optimization
+**Learning:** Legacy XNA/MonoGame projects often perform large numbers of `Vector3.Distance` calculations in particle systems (like `debrisBlood`). These can cause performance bottlenecks due to the expensive square root operations involved, especially in tight loops.
+**Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector3.Distance(a, b) < c` with `Vector3.DistanceSquared(a, b) < c * c` in performance-critical code paths.
