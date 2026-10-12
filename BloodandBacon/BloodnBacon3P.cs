@@ -25172,7 +25172,7 @@ namespace Blood
 				Quaternion quaternion;
 				Vector3 vector3;
 				trans.Decompose(out vector2, out quaternion, out vector3);
-				if (Vector3.Distance(vector, vector3) < vector2.X * 0.5f + num)
+				if (Vector3.DistanceSquared(vector, vector3) < (vector2.X * 0.5f + num) * (vector2.X * 0.5f + num) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 				{
 					this.farm2.stainTrans2.RemoveAt(i);
 					if (this.farm2.stainTrans2.Count > 1)
@@ -25217,7 +25217,7 @@ namespace Blood
 				Quaternion quaternion;
 				Vector3 vector3;
 				trans.Decompose(out vector2, out quaternion, out vector3);
-				if (Vector3.Distance(vector, vector3) < vector2.X * 0.5f + num && brushcolor == (int)this.farm2.stainTrans2[i].Fade)
+				if (Vector3.DistanceSquared(vector, vector3) < (vector2.X * 0.5f + num) * (vector2.X * 0.5f + num) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */ && brushcolor == (int)this.farm2.stainTrans2[i].Fade)
 				{
 					this.farm2.stainTrans2.RemoveAt(i);
 					if (this.farm2.stainTrans2.Count > 1)
@@ -25262,7 +25262,7 @@ namespace Blood
 				Quaternion quaternion;
 				Vector3 vector3;
 				trans.Decompose(out vector2, out quaternion, out vector3);
-				if (Vector3.Distance(vector, vector3) < vector2.X * 0.5f)
+				if (Vector3.DistanceSquared(vector, vector3) < (vector2.X * 0.5f) * (vector2.X * 0.5f) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 				{
 					this.brushcolor = (int)this.farm2.stainTrans2[i].Fade;
 					if (!flag)

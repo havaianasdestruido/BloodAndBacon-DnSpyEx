@@ -3386,7 +3386,7 @@ namespace Blood
 			}
 			this.shockTimer -= 1f;
 			this.shockRadius += (float)this.rr.Next(7, 12);
-			if (!this.shockHasHit && this.shockRadius < 1000f && Vector3.Distance(this.playerpos, this.cuttyPos) < this.shockRadius)
+			if (!this.shockHasHit && this.shockRadius < 1000f && Vector3.DistanceSquared(this.playerpos, this.cuttyPos) < (this.shockRadius) * (this.shockRadius) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 			{
 				this.shockHasHit = true;
 				this.shockHit = true;
