@@ -2353,9 +2353,9 @@ namespace Blood
 				{
 					Vector3 vector = Vector3.Transform(this.col_Pos[l], this.princessBone[this.col_Bone[l]]);
 					float num18 = this.col_Scale[l] * this.cuttyScale * this.hitScale[this.df];
-					float num19 = Vector3.Distance(new Vector3(this.playerpos.X, this.playerpos.Y + 90f, this.playerpos.Z), vector);
-					float num20 = Vector3.Distance(new Vector3(this.playerpos.X, this.playerpos.Y, this.playerpos.Z), vector);
-					if (num19 < num18 || num20 < num18)
+						float num19 = Vector3.DistanceSquared(new Vector3(this.playerpos.X, this.playerpos.Y + 90f, this.playerpos.Z), vector);
+						float num20 = Vector3.DistanceSquared(new Vector3(this.playerpos.X, this.playerpos.Y, this.playerpos.Z), vector);
+						if (num19 < num18 * num18 || num20 < num18 * num18) /* Bolt: Optimized slow Distance to DistanceSquared in collision loop */
 					{
 						this.cuttyCollide = true;
 						break;
