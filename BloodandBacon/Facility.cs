@@ -947,7 +947,7 @@ namespace Blood
 			}
 			for (int j = 0; j < list2.Count; j++)
 			{
-				if (Vector2.Distance(end, list2[j]) <= 500f)
+				if (Vector2.DistanceSquared(end, list2[j]) <= (500f) * (500f) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 				{
 					result.Add(list2[j]);
 					return true;
