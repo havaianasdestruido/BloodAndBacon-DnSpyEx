@@ -4,3 +4,6 @@
 ## 2024-05-18 - Replacing Vector3.Distance with Vector3.DistanceSquared
 **Learning:** Found an opportunity to replace `Vector3.Distance` with `Vector3.DistanceSquared` inside heavily used collision loops (`Princess.cs`, `Princess4.cs`). This prevents a slow square root calculation per entity per frame.
 **Action:** When working in games, watch for `Vector3.Distance` calls compared against thresholds in `Update` loops and replace with `DistanceSquared` against squared thresholds.
+## 2024-05-24 - Avoid Math.Sqrt by using DistanceSquared for constant distance comparisons
+**Learning:** Checking distances using `Vector3.Distance(a, b) < limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold.
+**Action:** Always prefer `Vector3.DistanceSquared(a, b) < (limit * limit)` for comparing distances to thresholds to avoid calculating square roots, particularly in hot code paths or loops.

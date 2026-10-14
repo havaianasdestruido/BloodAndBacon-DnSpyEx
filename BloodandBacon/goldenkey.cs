@@ -413,7 +413,7 @@ namespace Blood
 			Vector3 vector = (this.flashlight2pos + this.gogglepos) / 2f;
 			Vector3 vector2 = Vector3.Normalize(Vector3.Transform(new Vector3(0f, 0f, 1f), Matrix.CreateRotationX(npctilt) * Matrix.CreateRotationY(npcrot)));
 			this.nearItems = Vector3.DistanceSquared(campos, vector) < 490000f;
-			this.nearExit = Vector3.Distance(campos, new Vector3(2885f, -250f, 4485f)) < 700f;
+			this.nearExit = Vector3.DistanceSquared(campos, new Vector3(2885f, -250f, 4485f)) < 490000f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */;
 			if (this.nearItems)
 			{
 				if (Vector3.DistanceSquared(campos, this.flashlight1pos) < 4900f && !this.keyFlashlight1)

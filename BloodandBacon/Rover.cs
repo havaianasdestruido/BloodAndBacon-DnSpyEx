@@ -941,7 +941,7 @@ namespace Blood
 		// Token: 0x060007AE RID: 1966 RVA: 0x001C7A14 File Offset: 0x001C5C14
 		public void hitramp(int[,] heights, Vector3[,] normals, ref int onramp, ref Vector3 position, ref Vector3 newPosition, ref Vector3 gndPosition, ref Vector3 normal)
 		{
-			if (onramp == 0 && Vector3.Distance(position, new Vector3(this.region1[0], this.region1[1], this.region1[2])) > 200f)
+			if (onramp == 0 && Vector3.DistanceSquared(position, new Vector3(this.region1[0], this.region1[1], this.region1[2])) > 40000f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 			{
 				this.GetHeightAndNormalX(ref heights, ref normals, newPosition, out gndPosition.Y, out normal);
 				return;
@@ -1331,7 +1331,7 @@ namespace Blood
 		// Token: 0x060007AF RID: 1967 RVA: 0x001C8F90 File Offset: 0x001C7190
 		public void hitramp2(int[,] heights, Vector3[,] normals, ref int onramp, ref Vector3 position, ref Vector3 newPosition, ref Vector3 gndPosition, ref Vector3 normal, ref Vector3 velocity)
 		{
-			if (onramp == 0 && Vector3.Distance(position, new Vector3(this.region1[0], this.region1[1], this.region1[2])) > 200f)
+			if (onramp == 0 && Vector3.DistanceSquared(position, new Vector3(this.region1[0], this.region1[1], this.region1[2])) > 40000f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 			{
 				this.GetHeightAndNormalX(ref heights, ref normals, newPosition, out gndPosition.Y, out normal);
 				return;
