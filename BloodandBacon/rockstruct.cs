@@ -583,8 +583,9 @@ namespace Blood
 					int num14 = this.rockClose[m];
 					if (num14 != num12)
 					{
-						float num15 = Vector3.Distance(this.rockInst[num14].mypos, this.rockInst[num12].mypos);
-						if (num15 < this.rockInst[num12].scaler * 27f + this.rockInst[num14].scaler * 27f)
+							float num15 = Vector3.DistanceSquared(this.rockInst[num14].mypos, this.rockInst[num12].mypos);
+							float limit = this.rockInst[num12].scaler * 27f + this.rockInst[num14].scaler * 27f;
+							if (num15 < limit * limit /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 						{
 							Vector3 vector8 = Vector3.Zero;
 							Vector3 vector9 = this.rockInst[num12].mypos - this.rockInst[num14].mypos;
