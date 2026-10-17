@@ -19712,27 +19712,28 @@ namespace Blood
 				this.farmerManager("kick");
 				this.farmerGlitchCount = this.rr.Next(400, 2000);
 			}
-			float num2 = Vector3.Distance(this.myPlayer.displayState.npcPosition, new Vector3(3113f, 2f, 4591f));
+			// Bolt: Optimized proximity check to use DistanceSquared to avoid Math.Sqrt
+			float num2 = Vector3.DistanceSquared(this.myPlayer.displayState.npcPosition, new Vector3(3113f, 2f, 4591f));
 			if (this.sc.myTimer % 20f == 0f && this.myPlayer.inBarn)
 			{
 				this.lookatFarmer = false;
 				this.atFarmer = false;
 				Vector3 vector = Vector3.Normalize(this.camlookpos - this.campos);
 				Vector3 vector2 = Vector3.Normalize(new Vector3(3113f, 100f, 4591f) - this.campos);
-				if (num2 < 150f && Vector3.Dot(vector, vector2) > 0.75f)
+				if (num2 < 22500f && Vector3.Dot(vector, vector2) > 0.75f)
 				{
 					this.atFarmer = true;
 				}
 				vector = Vector3.Normalize(this.myPlayer.gunlook - this.myPlayer.gunpos);
 				vector2 = Vector3.Normalize(new Vector3(3113f, 100f, 4591f) - this.myPlayer.gunpos);
-				if (num2 < 400f && Vector3.Dot(vector, vector2) > 0.85f)
+				if (num2 < 160000f && Vector3.Dot(vector, vector2) > 0.85f)
 				{
 					this.lookatFarmer = true;
 				}
 			}
 			if (this.farmerJawIndex >= 0 && this.farmerDialog1Loaded)
 			{
-				Vector3.Distance(this.campos, new Vector3(3113f, 2f, 4591f));
+				// Bolt: Removed unused Distance call
 				this.talkAverage = this.farmerJaw[this.farmerJawIndex] * 0.7f;
 				this.talkAverage = MathHelper.Clamp(this.talkAverage, 0f, (float)Math.Sin((double)(this.sc.myTimer / 3f)) * 4f + 21f);
 				this.talkSmooth = this.talkAverage;
