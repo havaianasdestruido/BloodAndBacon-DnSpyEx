@@ -16106,8 +16106,8 @@ namespace Blood
 				}
 				if (this.myPlayer.jumping && this.teleportExists && this.inFarm == 2)
 				{
-					float num41 = Vector3.Distance(this.campos, this.teleportA);
-					float num42 = 90f;
+					float num41 = Vector3.DistanceSquared(this.campos, this.teleportA);
+					float num42 = 90f * 90f; /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */
 					if (num41 < num42)
 					{
 						this.myPlayer.displayState.npcPosition = this.teleportB;
