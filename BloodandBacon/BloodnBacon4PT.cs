@@ -15309,8 +15309,8 @@ namespace Blood
 							if (!this.skullemit[k].found)
 							{
 								Vector3 triggerPos = this.skullemit[k].triggerPos;
-								float num11 = Vector3.Distance(this.campos, triggerPos);
-								float num12 = 135f;
+								float num11 = Vector3.DistanceSquared(this.campos, triggerPos) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */;
+								float num12 = 135f * 135f;
 								if (num11 < num12)
 								{
 									this.skullemit[k].found = true;
@@ -15322,8 +15322,8 @@ namespace Blood
 							if (this.skullemit[k].repeat > 0 && this.skullemit[k].amt <= 0)
 							{
 								Vector3 triggerPos2 = this.skullemit[k].triggerPos;
-								float num13 = Vector3.Distance(this.campos, triggerPos2);
-								float num14 = 135f;
+								float num13 = Vector3.DistanceSquared(this.campos, triggerPos2) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */;
+								float num14 = 135f * 135f;
 								if (num13 >= num14)
 								{
 									this.skullemit[k].found = false;
@@ -15335,8 +15335,8 @@ namespace Blood
 							if (!this.skulldrop[l].found)
 							{
 								Vector3 triggerPos3 = this.skulldrop[l].triggerPos;
-								float num15 = Vector3.Distance(this.campos, triggerPos3);
-								float num16 = 500f;
+								float num15 = Vector3.DistanceSquared(this.campos, triggerPos3) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */;
+								float num16 = 500f * 500f;
 								if (num15 < num16)
 								{
 									this.skulldrop[l].found = true;
