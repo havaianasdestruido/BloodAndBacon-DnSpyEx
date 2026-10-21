@@ -228,7 +228,7 @@ namespace Blood
 				this.delta.X = this.oldpos.X - this.mypos.X;
 				this.delta.Y = 0f;
 				this.delta.Z = this.oldpos.Z - this.mypos.Z;
-				if (this.alive > 25 && this.delta.Length() > 0.1f)
+				if (this.alive > 25 && this.delta.LengthSquared() > 0.01f /* Bolt: Replaced expensive square root calculation with LengthSquared */)
 				{
 					this.myRot *= Matrix.CreateFromAxisAngle(Vector3.Cross(Vector3.Normalize(this.delta), Vector3.Up), num2 / (34f * this.scale.X));
 				}
@@ -294,7 +294,7 @@ namespace Blood
 				this.delta.X = this.oldpos.X - this.mypos.X;
 				this.delta.Y = 0f;
 				this.delta.Z = this.oldpos.Z - this.mypos.Z;
-				if (this.alive > 25 && this.delta.Length() > 0.1f)
+				if (this.alive > 25 && this.delta.LengthSquared() > 0.01f /* Bolt: Replaced expensive square root calculation with LengthSquared */)
 				{
 					this.turnRate = Math.Min(num3 / (40f * this.scale.X), 0.35f);
 					this.myRot *= Matrix.CreateFromAxisAngle(Vector3.Cross(Vector3.Normalize(this.delta), Vector3.Up), this.turnRate);
@@ -327,17 +327,17 @@ namespace Blood
 					{
 						this.velocity *= new Vector3(0.98f, 0f, 0.98f);
 					}
-					if (this.mypos.Y - this.groundHeight > 200f && this.velocity.Length() > 10f)
+					if (this.mypos.Y - this.groundHeight > 200f && this.velocity.LengthSquared() > 100f /* Bolt: Replaced expensive square root calculation with LengthSquared */)
 					{
 						this.velocity *= new Vector3(0.8f, 1f, 0.8f);
 						this.sloper = 0f;
 					}
-					if (this.normal.Y < 0.9f && this.velocity.Length() <= 2f)
+					if (this.normal.Y < 0.9f && this.velocity.LengthSquared() <= 4f /* Bolt: Replaced expensive square root calculation with LengthSquared */)
 					{
 						this.velocity += new Vector3(this.normal.X, 0f, this.normal.Z) * 1f;
 						this.sloper = 0f;
 					}
-					if ((this.velocity.Length() <= 1f || this.sloper > 0f) && this.sloper < 1f && this.normal.Y > 0.95f)
+					if ((this.velocity.LengthSquared() <= 1f /* Bolt: Replaced expensive square root calculation with LengthSquared */ || this.sloper > 0f) && this.sloper < 1f && this.normal.Y > 0.95f)
 					{
 						this.sloper += 0.1f;
 					}
