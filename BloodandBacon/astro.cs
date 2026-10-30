@@ -541,15 +541,16 @@ namespace Blood
 					{
 						Vector3 vector = Vector3.Zero;
 						int num4 = 0;
-						float num5 = 100000f;
+						float num5Squared = 100000f * 100000f;
 						for (int j = 0; j < this.seats.Count; j++)
 						{
 							vector = Vector3.Transform(this.seats[j].posoffset, astro.inDumper);
-							float num6 = Vector3.Distance(n.dupe[this.chosen].mypos, vector);
-							if (num6 < num5)
+							// Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared
+							float num6Squared = Vector3.DistanceSquared(n.dupe[this.chosen].mypos, vector);
+							if (num6Squared < num5Squared)
 							{
 								num4 = j;
-								num5 = num6;
+								num5Squared = num6Squared;
 							}
 						}
 						n.dupe[this.chosen].posOffset = this.seats[num4].posoffset;
