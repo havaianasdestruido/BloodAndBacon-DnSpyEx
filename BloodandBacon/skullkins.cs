@@ -245,7 +245,7 @@ namespace Blood
 			bool flag = false;
 			sh.tempindex = 0;
 			this.alive = 0;
-			skullkins.pumpkindistance = 10000f;
+			skullkins.pumpkindistance = 100000000f;
 			float num2 = myPlayer.vec.Length();
 			float num3 = remVec.Length();
 			for (int i = 0; i < sh.max; i++)
@@ -299,9 +299,9 @@ namespace Blood
 								if (myPlayer.gunFired && num5 > 0.95f)
 								{
 									float num6 = 32f;
-									if (genCursor.hitSphere(myPlayer.gunpos, myPlayer.gunlook, sh.dupe[i].mypos, sh.dupe[i].scale.Y * num6) != null && (float)Math.Sqrt((double)num4) <= skullkins.pumpkindistance)
+									if (genCursor.hitSphere(myPlayer.gunpos, myPlayer.gunlook, sh.dupe[i].mypos, sh.dupe[i].scale.Y * num6) != null && num4 <= skullkins.pumpkindistance)
 									{
-										skullkins.pumpkindistance = (float)Math.Sqrt((double)num4);
+										skullkins.pumpkindistance = num4;
 										num = MathHelper.Clamp(1f - ((float)Math.Sqrt((double)num4) - 200f) / 4000f, 0.2f, 1f);
 										this.pumpkinIndex = i;
 									}
@@ -554,7 +554,7 @@ namespace Blood
 		}
 
 		// Token: 0x04002E4C RID: 11852
-		public static float pumpkindistance = 10000f;
+		public static float pumpkindistance = 100000000f;
 
 		// Token: 0x04002E4D RID: 11853
 		private Effect effect;
