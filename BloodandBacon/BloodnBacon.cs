@@ -17474,7 +17474,7 @@ namespace Blood
 			{
 				this.updatebloodLevel();
 			}
-			skullkins.pumpkindistance = 10000f;
+			skullkins.pumpkindistance = 100000000f;
 			this.HandleLocal();
 			if (this.boarDropTimer.Count > 0 && this.boarDropTimer[0] <= this.timeFrame)
 			{
@@ -19357,7 +19357,7 @@ namespace Blood
 							}
 							if (this.tunneladd)
 							{
-								if (!this.twinshot && this.enemy1.skull.hitindex == -1 && skullkins.pumpkindistance == 10000f)
+								if (!this.twinshot && this.enemy1.skull.hitindex == -1 && skullkins.pumpkindistance == 100000000f)
 								{
 									bool flag18 = false;
 									for (int num37 = 0; num37 < this.combo.Count; num37++)
