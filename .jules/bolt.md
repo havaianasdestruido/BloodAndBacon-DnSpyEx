@@ -14,3 +14,7 @@
 ## 2024-05-20 - Finding Closest Points Optimization
 **Learning:** In legacy games, searching for a closest point inside a loop (like finding nearest seat in `astro.cs`) using `Vector3.Distance` introduces multiple expensive `Math.Sqrt` calls unnecessarily. A threshold calculation tracking the shortest distance doesn't need to know the true distance.
 **Action:** When tracking minimum distance in a loop, initialize the tracking variable to the squared initial value (e.g. `100000f * 100000f`) and track `DistanceSquared` instead of `Distance`.
+
+## 2024-05-19 - Replacing Vector2/Vector3.Length with LengthSquared
+**Learning:** Checking distances using `Vector.Length() > limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. We found numerous instances where `vector.Length() > 50f` was checked in `Update` loops related to Princess/Cutty bosses in BloodandBacon.
+**Action:** When working in games, watch for `Vector.Length()` calls compared against thresholds and replace with `LengthSquared()` against squared thresholds (e.g. `vector.LengthSquared() > 2500f`).
