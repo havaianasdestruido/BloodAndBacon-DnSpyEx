@@ -18,3 +18,7 @@
 ## 2024-05-19 - Replacing Vector2/Vector3.Length with LengthSquared
 **Learning:** Checking distances using `Vector.Length() > limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. We found numerous instances where `vector.Length() > 50f` was checked in `Update` loops related to Princess/Cutty bosses in BloodandBacon.
 **Action:** When working in games, watch for `Vector.Length()` calls compared against thresholds and replace with `LengthSquared()` against squared thresholds (e.g. `vector.LengthSquared() > 2500f`).
+
+## 2024-05-18 - Avoid Vector3.Length()
+**Learning:** Checking vector magnitudes using `Vector3.Length() < limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. This is a common performance bottleneck in MonoGame and XNA applications.
+**Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector3.Length() < c` with `Vector3.LengthSquared() < c * c` in performance-critical code paths.

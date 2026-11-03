@@ -37,7 +37,7 @@ namespace Blood
 			{
 				float num = 9000f;
 				Vector3 vector = this.velocity;
-				if (this.velocity.Length() <= 0.1f)
+				if (this.velocity.LengthSquared() <= 0.01f /* Bolt: Optimized by replacing expensive square root Length calculation with LengthSquared */)
 				{
 					vector = foffset - this.position;
 				}
@@ -699,7 +699,7 @@ namespace Blood
 								{
 									this.turnDir = 1;
 								}
-								if (this.velocity.Length() < Math.Abs(Rover.max) * 0.95f)
+								if (this.velocity.LengthSquared() < (Math.Abs(Rover.max) * 0.95f) * (Math.Abs(Rover.max) * 0.95f) /* Bolt: Optimized by replacing expensive square root Length calculation with LengthSquared */)
 								{
 									this.hithard = 2;
 									this.velocity = Vector3.Reflect(this.velocity, this.normal);
