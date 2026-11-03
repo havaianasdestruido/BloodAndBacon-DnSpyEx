@@ -5310,8 +5310,8 @@ namespace Blood
 		// Token: 0x06000E89 RID: 3721 RVA: 0x0041953C File Offset: 0x0041773C
 		private void DrawBuilding(Model model, Vector3 pos)
 		{
-			float num = Vector3.Distance(this.aCampos, this.farmLocation);
-			if (num > 29000f)
+			float numSquared = Vector3.DistanceSquared(this.aCampos, this.farmLocation); /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */
+			if (numSquared > 841000000f)
 			{
 				return;
 			}

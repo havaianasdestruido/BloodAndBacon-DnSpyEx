@@ -14456,7 +14456,7 @@ namespace Blood
 			{
 				this.updatebloodLevel();
 			}
-			skullkins.pumpkindistance = 10000f;
+			skullkins.pumpkindistance = 100000000f;
 			this.HandleLocal();
 			if (this.boarDropTimer.Count > 0 && this.boarDropTimer[0] <= this.timeFrame)
 			{
@@ -15667,7 +15667,7 @@ namespace Blood
 						if (!this.myPlayer.isLiftingOpponent && !this.myPlayer.isDown)
 						{
 							Vector2 vector17 = new Vector2(this.myPlayer.displayState.npcPosition.X, this.myPlayer.displayState.npcPosition.Z) - new Vector2(this.cuttyBoss[num24].cuttyPos.X, this.cuttyBoss[num24].cuttyPos.Z);
-							if (vector17.Length() > 50f)
+							if (vector17.LengthSquared() > 2500f /* Bolt: Optimized by replacing expensive square root Length calculation with LengthSquared */)
 							{
 								this.hitVel = Vector2.Normalize(vector17) * (float)this.rr.Next(310, 520) / 100f;
 								this.myPlayer.jump.X = this.hitVel.X;
@@ -16057,7 +16057,7 @@ namespace Blood
 					if (!this.myPlayer.isLiftingOpponent && !this.myPlayer.isDown)
 					{
 						Vector2 vector22 = new Vector2(this.myPlayer.displayState.npcPosition.X, this.myPlayer.displayState.npcPosition.Z) - new Vector2(this.princess[num28].cuttyPos.X, this.princess[num28].cuttyPos.Z);
-						if (vector22.Length() > 50f)
+						if (vector22.LengthSquared() > 2500f /* Bolt: Optimized by replacing expensive square root Length calculation with LengthSquared */)
 						{
 							this.hitVel = Vector2.Normalize(vector22) * (float)this.rr.Next(410, 720) / 100f;
 							if (this.myPlayer.jumping)
@@ -16545,7 +16545,7 @@ namespace Blood
 							}
 							if (this.tunneladd)
 							{
-								if (!this.twinshot && this.enemy1.skull.hitindex == -1 && skullkins.pumpkindistance == 10000f)
+								if (!this.twinshot && this.enemy1.skull.hitindex == -1 && skullkins.pumpkindistance == 100000000f)
 								{
 									bool flag21 = false;
 									for (int num64 = 0; num64 < this.combo.Count; num64++)

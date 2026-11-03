@@ -13071,7 +13071,7 @@ namespace Blood
 						if (!this.myPlayer.isLiftingOpponent && !this.myPlayer.isDown)
 						{
 							Vector2 vector26 = new Vector2(this.myPlayer.displayState.npcPosition.X, this.myPlayer.displayState.npcPosition.Z) - new Vector2(this.cuttyBoss[n].cuttyPos.X, this.cuttyBoss[n].cuttyPos.Z);
-							if (vector26.Length() > 50f)
+							if (vector26.LengthSquared() > 2500f /* Bolt: Optimized by replacing expensive square root Length calculation with LengthSquared */)
 							{
 								this.hitVel = Vector2.Normalize(vector26) * (float)this.rr.Next(310, 520) / 100f;
 								this.myPlayer.jump.X = this.hitVel.X;
@@ -13461,7 +13461,7 @@ namespace Blood
 					if (!this.myPlayer.isLiftingOpponent && !this.myPlayer.isDown)
 					{
 						Vector2 vector31 = new Vector2(this.myPlayer.displayState.npcPosition.X, this.myPlayer.displayState.npcPosition.Z) - new Vector2(this.princess[num20].cuttyPos.X, this.princess[num20].cuttyPos.Z);
-						if (vector31.Length() > 50f)
+						if (vector31.LengthSquared() > 2500f /* Bolt: Optimized by replacing expensive square root Length calculation with LengthSquared */)
 						{
 							this.hitVel = Vector2.Normalize(vector31) * (float)this.rr.Next(410, 720) / 100f;
 							if (this.myPlayer.jumping)

@@ -13,3 +13,15 @@
 ## 2024-05-24 - Avoiding Math.Sqrt for Length comparisons
 **Learning:** Legacy XNA/MonoGame projects perform many `Vector3.Length()` calculations in update loops (like physics and collision in `skullDupe.cs`). These involve expensive square root operations, which become bottlenecks in tight loops.
 **Action:** Always replace `Vector3.Length() < limit` (and similar inequalities) with `Vector3.LengthSquared() < limit * limit` to avoid calculating square roots unnecessarily.
+
+## 2024-05-20 - Finding Closest Points Optimization
+**Learning:** In legacy games, searching for a closest point inside a loop (like finding nearest seat in `astro.cs`) using `Vector3.Distance` introduces multiple expensive `Math.Sqrt` calls unnecessarily. A threshold calculation tracking the shortest distance doesn't need to know the true distance.
+**Action:** When tracking minimum distance in a loop, initialize the tracking variable to the squared initial value (e.g. `100000f * 100000f`) and track `DistanceSquared` instead of `Distance`.
+
+## 2024-05-19 - Replacing Vector2/Vector3.Length with LengthSquared
+**Learning:** Checking distances using `Vector.Length() > limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. We found numerous instances where `vector.Length() > 50f` was checked in `Update` loops related to Princess/Cutty bosses in BloodandBacon.
+**Action:** When working in games, watch for `Vector.Length()` calls compared against thresholds and replace with `LengthSquared()` against squared thresholds (e.g. `vector.LengthSquared() > 2500f`).
+
+## 2024-05-18 - Avoid Vector3.Length()
+**Learning:** Checking vector magnitudes using `Vector3.Length() < limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. This is a common performance bottleneck in MonoGame and XNA applications.
+**Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector3.Length() < c` with `Vector3.LengthSquared() < c * c` in performance-critical code paths.
