@@ -10,6 +10,9 @@
 ## 2024-05-24 - Avoiding Math.Sqrt for threshold comparisons in teleport logic
 **Learning:** Found an opportunity to replace `Vector3.Distance` with `Vector3.DistanceSquared` inside jump and teleport logic (`BloodnBacon.cs`, `BloodnBacon4PT.cs`). This prevents a slow square root calculation per frame whenever jumping while a teleport is available.
 **Action:** When working in games, watch for `Vector3.Distance` calls compared against thresholds and replace with `DistanceSquared` against squared thresholds.
+## 2024-05-24 - Avoiding Math.Sqrt for Length comparisons
+**Learning:** Legacy XNA/MonoGame projects perform many `Vector3.Length()` calculations in update loops (like physics and collision in `skullDupe.cs`). These involve expensive square root operations, which become bottlenecks in tight loops.
+**Action:** Always replace `Vector3.Length() < limit` (and similar inequalities) with `Vector3.LengthSquared() < limit * limit` to avoid calculating square roots unnecessarily.
 
 ## 2024-05-20 - Finding Closest Points Optimization
 **Learning:** In legacy games, searching for a closest point inside a loop (like finding nearest seat in `astro.cs`) using `Vector3.Distance` introduces multiple expensive `Math.Sqrt` calls unnecessarily. A threshold calculation tracking the shortest distance doesn't need to know the true distance.
