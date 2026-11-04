@@ -12722,8 +12722,8 @@ namespace Blood
 		{
 			this.hillbillyTime--;
 			Vector3 vector = this.twinPosition;
-			float num = Vector3.Distance(this.myPlayer.displayState.npcPosition, vector);
-			if (num > 800f)
+			float num = Vector3.DistanceSquared(this.myPlayer.displayState.npcPosition, vector);
+			if (num > 640000f) // Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared
 			{
 				this.atTwinFar = true;
 				this.twinJawIndex = -1;

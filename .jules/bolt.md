@@ -25,3 +25,7 @@
 ## 2024-05-18 - Avoid Vector3.Length()
 **Learning:** Checking vector magnitudes using `Vector3.Length() < limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. This is a common performance bottleneck in MonoGame and XNA applications.
 **Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector3.Length() < c` with `Vector3.LengthSquared() < c * c` in performance-critical code paths.
+
+## 2024-05-24 - Avoiding Math.Sqrt for distance logic in twinBones
+**Learning:** Found an opportunity to replace `Vector3.Distance` with `Vector3.DistanceSquared` inside `twinBones` logic (`BloodnBacon.cs`). This prevents a slow square root calculation per frame whenever evaluating the distance to the twin.
+**Action:** When working in games, watch for `Vector3.Distance` calls compared against thresholds and replace with `DistanceSquared` against squared thresholds.
