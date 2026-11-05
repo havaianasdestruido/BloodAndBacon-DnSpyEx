@@ -991,7 +991,7 @@ namespace Blood
 			if (flag2 || flag || n.dupe[i].enemyCounter % 3 == 1)
 			{
 				n.dupe[i].destination = n.dupe[i].myhome;
-				if (Vector2.Distance(new Vector2(n.dupe[i].destination.X, n.dupe[i].destination.Y), new Vector2(n.dupe[i].enemypos.X, n.dupe[i].enemypos.Z)) < 250f)
+				if (Vector2.DistanceSquared(new Vector2(n.dupe[i].destination.X, n.dupe[i].destination.Y), new Vector2(n.dupe[i].enemypos.X, n.dupe[i].enemypos.Z)) < 62500f) // Bolt: Optimization
 				{
 					flag = true;
 				}
@@ -1149,7 +1149,7 @@ namespace Blood
 			}
 			for (int j = 0; j < list2.Count; j++)
 			{
-				if (Vector2.Distance(end, new Vector2(list2[j].X, list2[j].Z)) < 125f)
+				if (Vector2.DistanceSquared(end, new Vector2(list2[j].X, list2[j].Z)) < 15625f) // Bolt: Optimization
 				{
 					result.Add(list2[j]);
 					return true;
@@ -1320,7 +1320,7 @@ namespace Blood
 			}
 			for (int j = 0; j < list2.Count; j++)
 			{
-				if (Vector2.Distance(end, new Vector2(list2[j].X, list2[j].Z)) <= 125f)
+				if (Vector2.DistanceSquared(end, new Vector2(list2[j].X, list2[j].Z)) <= 15625f) // Bolt: Optimization
 				{
 					result.Add(list2[j]);
 					return true;
