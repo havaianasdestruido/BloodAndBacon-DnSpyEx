@@ -29,3 +29,6 @@
 ## 2024-05-24 - Avoiding Math.Sqrt for distance logic in twinBones
 **Learning:** Found an opportunity to replace `Vector3.Distance` with `Vector3.DistanceSquared` inside `twinBones` logic (`BloodnBacon.cs`). This prevents a slow square root calculation per frame whenever evaluating the distance to the twin.
 **Action:** When working in games, watch for `Vector3.Distance` calls compared against thresholds and replace with `DistanceSquared` against squared thresholds.
+## 2024-05-18 - Caching Length for further optimizations
+**Learning:** Sometimes, variables have a Length or Distance checked if it's strictly > 0, but then the Length itself is calculated again immediately after if it is greater than zero. Replacing Length() with LengthSquared() doesn't completely avoid the square root if it's called immediately afterwards! But extracting it fully into a local variable might be slightly beyond a safe automated script unless carefully monitored.
+**Action:** When replacing Length() < c, always check what happens *inside* the block. If Length() is used again, refactoring to calculate and cache it locally might be more beneficial, or at least ensuring the automated script handles this edge case.

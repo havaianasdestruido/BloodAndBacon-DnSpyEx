@@ -7,6 +7,7 @@ using SkinnedModel;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x02000133 RID: 307
 	public class astro : GameScreen
 	{
@@ -349,7 +350,7 @@ namespace Blood
 			n.hammerindex1 = 0;
 			this.drawOverheads.Clear();
 			bool flag = false;
-			if (astro.rovveloc.Length() > 5f)
+			if (astro.rovveloc.LengthSquared() > 25f)
 			{
 				flag = true;
 			}

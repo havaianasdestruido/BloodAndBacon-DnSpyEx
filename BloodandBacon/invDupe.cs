@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x0200010B RID: 267
 	public class invDupe
 	{

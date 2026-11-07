@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x02000065 RID: 101
 	public class Facility : GameScreen
 	{

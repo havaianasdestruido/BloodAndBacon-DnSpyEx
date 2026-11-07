@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x0200018A RID: 394
 	internal class GameplayScreen : GameScreen
 	{
@@ -2456,7 +2457,7 @@ namespace Blood
 							switch (num21)
 							{
 							case 1:
-								if (this.rover.onramp == 0 && this.rover.grav.Length() < 4f && this.rover.velocity.Length() < 4f)
+								if (this.rover.onramp == 0 && this.rover.grav.LengthSquared() < 16f && this.rover.velocity.LengthSquared() < 16f)
 								{
 									this.overlay.roverbutton1 = 50;
 									this.vehicleindex = 3;
@@ -2743,7 +2744,7 @@ namespace Blood
 								this.rot += 6.283185f;
 							}
 						}
-						if ((this.Ktoggle(this.sc.t_key) || (this.gamePadState.Buttons.Y == ButtonState.Pressed && this.prevstate.Buttons.Y == ButtonState.Released)) && !this.nearAstro && this.rover.velocity.Length() < 3f && this.rover.onramp == 0)
+						if ((this.Ktoggle(this.sc.t_key) || (this.gamePadState.Buttons.Y == ButtonState.Pressed && this.prevstate.Buttons.Y == ButtonState.Released)) && !this.nearAstro && this.rover.velocity.LengthSquared() < 9f && this.rover.onramp == 0)
 						{
 							this.sc.astronaut.everyoneOut = true;
 						}
@@ -3295,9 +3296,10 @@ namespace Blood
 							{
 								flag6 = true;
 							}
-							if (this.vec.Length() > 0f)
+							float vecLength43 = this.vec.Length();
+							if (vecLength43 > 0f)
 							{
-								float num43 = (num42 - this.groundHeight) / this.vec.Length();
+								float num43 = (num42 - this.groundHeight) / vecLength43;
 								if (Math.Abs(num43) < num41 || flag6 || this.jumping)
 								{
 									this.campos += this.vec;
@@ -3306,7 +3308,7 @@ namespace Blood
 								{
 									Vector3 vector16 = new Vector3(0f, 0f, this.vec.Z);
 									this.facility.GetHeightEntry(this.campos + vector16, out this.groundHeight, num40);
-									num43 = (num42 - this.groundHeight) / this.vec.Length();
+									num43 = (num42 - this.groundHeight) / vecLength43;
 									if (Math.Abs(num43) < num41)
 									{
 										this.campos.X = this.campos.X + vector16.X;
@@ -3317,7 +3319,7 @@ namespace Blood
 									{
 										vector16 = new Vector3(this.vec.X, 0f, 0f);
 										this.facility.GetHeightEntry(this.campos + vector16, out this.groundHeight, num40);
-										num43 = (num42 - this.groundHeight) / this.vec.Length();
+										num43 = (num42 - this.groundHeight) / vecLength43;
 										if (Math.Abs(num43) < num41)
 										{
 											this.campos.X = this.campos.X + vector16.X;
@@ -3338,9 +3340,10 @@ namespace Blood
 							float num44;
 							this.facility.GetHeight(this.campos, out num44, num40);
 							this.facility.GetHeight(this.campos + this.vec, out this.groundHeight, num40);
-							if (this.vec.Length() > 0f)
+							float vecLength45 = this.vec.Length();
+							if (vecLength45 > 0f)
 							{
-								float num45 = (num44 - this.groundHeight) / this.vec.Length();
+								float num45 = (num44 - this.groundHeight) / vecLength45;
 								if (Math.Abs(num45) < num41)
 								{
 									this.campos += this.vec;
@@ -3349,7 +3352,7 @@ namespace Blood
 								{
 									Vector3 vector17 = new Vector3(0f, 0f, this.vec.Z);
 									this.facility.GetHeight(this.campos + vector17, out this.groundHeight, num40);
-									num45 = (num44 - this.groundHeight) / this.vec.Length();
+									num45 = (num44 - this.groundHeight) / vecLength45;
 									if (Math.Abs(num45) < num41)
 									{
 										this.campos.X = this.campos.X + vector17.X;
@@ -3360,7 +3363,7 @@ namespace Blood
 									{
 										vector17 = new Vector3(this.vec.X, 0f, 0f);
 										this.facility.GetHeight(this.campos + vector17, out this.groundHeight, num40);
-										num45 = (num44 - this.groundHeight) / this.vec.Length();
+										num45 = (num44 - this.groundHeight) / vecLength45;
 										if (Math.Abs(num45) < num41)
 										{
 											this.campos.X = this.campos.X + vector17.X;
@@ -3389,9 +3392,10 @@ namespace Blood
 								this.GetHeightOnly(ref this.tmake.heightData, this.campos + this.vec, out this.groundHeight);
 							}
 							this.dumpos = this.campos;
-							if (this.vec.Length() > 0f)
+							float vecLength47 = this.vec.Length();
+							if (vecLength47 > 0f)
 							{
-								float num47 = (num46 - this.groundHeight) / this.vec.Length();
+								float num47 = (num46 - this.groundHeight) / vecLength47;
 								if (num47 > 0f)
 								{
 									this.campos += this.vec;
@@ -3498,7 +3502,7 @@ namespace Blood
 							this.jumpCount--;
 							this.jumping = true;
 							this.jumpCalled = false;
-							if (this.hitVec.Length() > 0f)
+							if (this.hitVec.LengthSquared() > 0f)
 							{
 								this.fallGrav = MathHelper.Min(this.hitVec.Y / 10f, 6f);
 								this.hitVec.Y = 0f;

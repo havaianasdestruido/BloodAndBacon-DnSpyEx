@@ -8,6 +8,7 @@ using Steamworks;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x020000EA RID: 234
 	public class remotePlayer4 : GameScreen
 	{

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x020000DD RID: 221
 	internal class Rover : GameScreen
 	{
@@ -337,7 +338,7 @@ namespace Blood
 					float num = 1f - Rover.fric;
 					float y = vector4.Y;
 					vector4 = vector4 * num + Rover.fric * this.velocity;
-					if (vector4.Length() > 0f)
+					if (vector4.LengthSquared() > 0f)
 					{
 						vector4 = Vector3.Normalize(vector4) * vector4.Length();
 						vector4.Y = y;

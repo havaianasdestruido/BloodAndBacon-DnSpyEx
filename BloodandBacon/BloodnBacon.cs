@@ -17,6 +17,7 @@ using Steamworks;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x020000B9 RID: 185
 	public class BloodnBacon : GameScreen
 	{
@@ -10907,9 +10908,9 @@ namespace Blood
 									vector11.Z = (float)Math.Sin((double)num13);
 									float num14 = this.dirInput.Length();
 									vector11 *= num14 * 6f;
-									if (vector11.Length() < 1f)
+									if (vector11.LengthSquared() < 1f)
 									{
-										if (sh.dupe[i].velocity.Length() <= 2f)
+										if (sh.dupe[i].velocity.LengthSquared() <= 4f)
 										{
 											vector11 = new Vector3((float)this.rr.Next(15, 25) / 10f, (float)this.rr.Next(5, 25) / 10f, (float)this.rr.Next(-25, 25) / 10f);
 										}
@@ -16045,7 +16046,7 @@ namespace Blood
 					}
 					Vector3 npcPosition = this.myPlayer.displayState.npcPosition;
 					this.myPlayer.UpdateLocal(ref this.farmheights, this.dirInput, this.headTilt, this.headRot, this.barnDoorslide.Z, this.sc.gameState, this.sc.hover);
-					if (this.inFarm == 2 && this.hitVel.Length() > 0f && Math.Abs(this.myPlayer.displayState.npcPosition.Y - npcPosition.Y) > 2f)
+					if (this.inFarm == 2 && this.hitVel.LengthSquared() > 0f && Math.Abs(this.myPlayer.displayState.npcPosition.Y - npcPosition.Y) > 2f)
 					{
 						this.myPlayer.simulationState.npcPosition = npcPosition;
 						this.myPlayer.displayState.npcPosition = npcPosition;

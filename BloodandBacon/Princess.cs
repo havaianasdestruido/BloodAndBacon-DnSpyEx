@@ -10,6 +10,7 @@ using SkinnedModel;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x02000079 RID: 121
 	internal class Princess
 	{

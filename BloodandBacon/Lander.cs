@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x020000B7 RID: 183
 	internal class Lander : GameScreen
 	{
@@ -193,7 +194,7 @@ namespace Blood
 				{
 					float num = 9000f;
 					Vector3 vector = this.velocity;
-					if (this.velocity.Length() <= 0.1f)
+					if (this.velocity.LengthSquared() <= 0.01f)
 					{
 						vector = this.dropship - this.newPosition;
 					}

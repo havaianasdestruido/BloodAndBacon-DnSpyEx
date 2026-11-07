@@ -12,6 +12,7 @@ using SkinnedModel;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x02000115 RID: 277
 	internal class Cutty
 	{

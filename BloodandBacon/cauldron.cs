@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x0200009A RID: 154
 	public class cauldron
 	{
@@ -492,7 +493,7 @@ namespace Blood
 									this.soundcount = 20;
 								}
 								Vector2 vector5 = new Vector2(sh.dupe[i].mypos.X, sh.dupe[i].mypos.Z) - new Vector2(myPlayer.displayState.npcPosition.X, myPlayer.displayState.npcPosition.Z);
-								if (vector5.Length() > 0f)
+								if (vector5.LengthSquared() > 0f)
 								{
 									hitVel = -Vector2.Normalize(vector5) * 3.5f;
 									hitVel = Vector2.Transform(new Vector2(-hitVel.X, hitVel.Y), Matrix.CreateRotationZ(-headRot));
