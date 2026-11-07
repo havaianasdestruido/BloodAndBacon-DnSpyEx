@@ -3248,18 +3248,18 @@ namespace Blood
 							this.walkspeed = num36 + num37 * 5f;
 							this.vec = Vector3.Transform(new Vector3(-vector13.X / 1.3f, 0f, vector13.Y), Matrix.CreateRotationY(-3.14f - this.camradian)) * this.walkspeed;
 							Vector3 vector14 = Vector3.Normalize(this.vec);
-							if (this.vec.Length() > this.walkspeed)
+								if (this.vec.LengthSquared() > this.walkspeed * this.walkspeed /* Bolt: Optimized Length to LengthSquared */)
 							{
 								this.vec = vector14 * this.walkspeed;
 							}
 							if (this.jumping)
 							{
 								Vector3 vector15 = Vector3.Transform(new Vector3(-vector13.X / 1.2f, 0f, vector13.Y), Matrix.CreateRotationY(-3.14f - this.camradian)) * 1f * num37;
-								if ((this.fallVec + vector15).Length() < this.fallLim)
+									if ((this.fallVec + vector15).LengthSquared() < this.fallLim * this.fallLim /* Bolt: Optimized Length to LengthSquared */)
 								{
 									this.fallVec += vector15;
 								}
-								if ((this.fallVec + vector15).Length() >= this.fallLim && (this.fallVec + vector15).Length() < this.fallVec.Length())
+									if ((this.fallVec + vector15).LengthSquared() >= this.fallLim * this.fallLim && (this.fallVec + vector15).LengthSquared() < this.fallVec.LengthSquared() /* Bolt: Optimized Length to LengthSquared */)
 								{
 									this.fallVec += vector15;
 								}
