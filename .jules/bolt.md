@@ -32,3 +32,7 @@
 ## 2024-05-18 - Caching Length for further optimizations
 **Learning:** Sometimes, variables have a Length or Distance checked if it's strictly > 0, but then the Length itself is calculated again immediately after if it is greater than zero. Replacing Length() with LengthSquared() doesn't completely avoid the square root if it's called immediately afterwards! But extracting it fully into a local variable might be slightly beyond a safe automated script unless carefully monitored.
 **Action:** When replacing Length() < c, always check what happens *inside* the block. If Length() is used again, refactoring to calculate and cache it locally might be more beneficial, or at least ensuring the automated script handles this edge case.
+
+## 2024-11-07 - Avoid Vector3.Length in Update Loops
+**Learning:** Checking vector magnitudes using `Vector3.Length() > limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. This is a common performance bottleneck in MonoGame and XNA applications.
+**Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector3.Length() > c` with `Vector3.LengthSquared() > c * c` in performance-critical code paths.

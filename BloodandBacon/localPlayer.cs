@@ -100,7 +100,7 @@ namespace Blood
 				{
 					num2 = Math.Max(16f, num2);
 				}
-				if (this.fallVec.Length() > num2)
+					if (this.fallVec.LengthSquared() > num2 * num2 /* Bolt: Optimized Length to LengthSquared */)
 				{
 					this.fallVec = Vector3.Normalize(this.fallVec) * num2;
 				}
