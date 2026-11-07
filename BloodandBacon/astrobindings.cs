@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x02000082 RID: 130
 	internal class astrobindings : GameScreen
 	{
@@ -1284,7 +1285,7 @@ namespace Blood
 						this.updownIndex = 0;
 					}
 				}
-				if (this.keyState.IsKeyDown(Keys.Left) || this.keyState.IsKeyDown(Keys.Right) || this.keyState.IsKeyDown(Keys.Up) || this.keyState.IsKeyDown(Keys.Down) || this.gamestate.ThumbSticks.Right.Length() > 0.05f || this.gamestate.ThumbSticks.Left.Length() > 0.05f)
+				if (this.keyState.IsKeyDown(Keys.Left) || this.keyState.IsKeyDown(Keys.Right) || this.keyState.IsKeyDown(Keys.Up) || this.keyState.IsKeyDown(Keys.Down) || this.gamestate.ThumbSticks.Right.LengthSquared() > 0.0025f || this.gamestate.ThumbSticks.Left.LengthSquared() > 0.0025f)
 				{
 					float num2 = this.gamestate.ThumbSticks.Right.X * this.gamestate.ThumbSticks.Right.X * (float)Math.Sign(this.gamestate.ThumbSticks.Right.X) * 5f;
 					float num3 = this.gamestate.ThumbSticks.Right.Y * this.gamestate.ThumbSticks.Right.Y * (float)Math.Sign(this.gamestate.ThumbSticks.Right.Y) * 5f;
@@ -1304,7 +1305,7 @@ namespace Blood
 					{
 						num3 -= 2f;
 					}
-					if (this.gamestate.ThumbSticks.Left.Length() > 0.05f)
+					if (this.gamestate.ThumbSticks.Left.LengthSquared() > 0.0025f)
 					{
 						num2 = this.gamestate.ThumbSticks.Left.X * this.gamestate.ThumbSticks.Left.X * (float)Math.Sign(this.gamestate.ThumbSticks.Left.X) * 5f;
 						num3 = this.gamestate.ThumbSticks.Left.Y * this.gamestate.ThumbSticks.Left.Y * (float)Math.Sign(this.gamestate.ThumbSticks.Left.Y) * 5f;

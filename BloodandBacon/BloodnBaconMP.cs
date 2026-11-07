@@ -16,6 +16,7 @@ using Steamworks;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x02000034 RID: 52
 	public class BloodnBaconMP : GameScreen
 	{
@@ -9686,9 +9687,9 @@ namespace Blood
 									vector11.Z = (float)Math.Sin((double)num13);
 									float num14 = this.dirInput.Length();
 									vector11 *= num14 * 6f;
-									if (vector11.Length() < 1f)
+									if (vector11.LengthSquared() < 1f)
 									{
-										if (sh.dupe[i].velocity.Length() <= 2f)
+										if (sh.dupe[i].velocity.LengthSquared() <= 4f)
 										{
 											vector11 = new Vector3((float)this.rr.Next(15, 25) / 10f, (float)this.rr.Next(5, 25) / 10f, (float)this.rr.Next(-25, 25) / 10f);
 										}

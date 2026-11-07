@@ -6,6 +6,7 @@ using Steamworks;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x020000D3 RID: 211
 	public class localPlayer
 	{

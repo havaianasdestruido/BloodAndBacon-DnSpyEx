@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Blood
 {
+	// Bolt: Optimized vector distance/length checks to use squared values, avoiding expensive Math.Sqrt calls.
 	// Token: 0x0200008A RID: 138
 	internal class remotePlayer
 	{
