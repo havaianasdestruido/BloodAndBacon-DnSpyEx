@@ -588,7 +588,7 @@ namespace Blood
 				if ((this.lastxgrid != this.xgrid && this.whatx != this.diffix) || (this.lastzgrid != this.zgrid && this.whatz != this.diffiz))
 				{
 					this.UpdateTerrain(150000, true);
-					if (Vector2.Distance(new Vector2(this.trnLoctn.X, this.trnLoctn.Z), new Vector2(this.trnLoctnLast.X, this.trnLoctnLast.Z)) > (float)this.cutoff)
+					if (Vector2.DistanceSquared(new Vector2(this.trnLoctn.X, this.trnLoctn.Z), new Vector2(this.trnLoctnLast.X, this.trnLoctnLast.Z)) > (float)(this.cutoff * this.cutoff) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 					{
 						this.trnLoctnLast = this.trnLoctn;
 					}
@@ -4502,13 +4502,13 @@ namespace Blood
 				if (this.frameCounter % 100 == 0 && this.vehicleindex == 1)
 				{
 					Vector2 vector21 = new Vector2(this.rover.position.X, this.rover.position.Z);
-					if (this.overlay.bouy1 != Vector3.Zero && Vector2.Distance(new Vector2(this.overlay.bouy1.X, this.overlay.bouy1.Z), vector21) < 90f)
+					if (this.overlay.bouy1 != Vector3.Zero && Vector2.DistanceSquared(new Vector2(this.overlay.bouy1.X, this.overlay.bouy1.Z), vector21) < 8100f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 					{
 						this.overlay.bouy1 = Vector3.Zero;
 						this.sc.eraseBeacon.Play(this.sc.ev, 0f, 0f);
 						this.overlay.nextBouy = 1;
 					}
-					if (this.overlay.bouy2 != Vector3.Zero && Vector2.Distance(new Vector2(this.overlay.bouy2.X, this.overlay.bouy2.Z), vector21) < 90f)
+					if (this.overlay.bouy2 != Vector3.Zero && Vector2.DistanceSquared(new Vector2(this.overlay.bouy2.X, this.overlay.bouy2.Z), vector21) < 8100f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 					{
 						this.overlay.bouy2 = Vector3.Zero;
 						this.sc.eraseBeacon.Play(this.sc.ev, 0f, 0f);
@@ -4600,8 +4600,8 @@ namespace Blood
 			Lander.nearfarm = this.nearfarm;
 			Rover.nearfarm = this.nearfarm;
 			Vector3 vector = this.trnLoctn;
-			bool flag = Vector2.Distance(new Vector2(this.trnLoctn.X, this.trnLoctn.Z), new Vector2(this.oldtrnLoctn2.X, this.oldtrnLoctn2.Z)) > (float)this.cutoff;
-			if (Vector2.Distance(new Vector2(vector.X, vector.Z), new Vector2(this.trnLoctnLast.X, this.trnLoctnLast.Z)) > 149f)
+			bool flag = Vector2.DistanceSquared(new Vector2(this.trnLoctn.X, this.trnLoctn.Z), new Vector2(this.oldtrnLoctn2.X, this.oldtrnLoctn2.Z)) > (float)(this.cutoff * this.cutoff) /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */;
+			if (Vector2.DistanceSquared(new Vector2(vector.X, vector.Z), new Vector2(this.trnLoctnLast.X, this.trnLoctnLast.Z)) > 22201f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 			{
 				while (this.trnLoctnLast.X != vector.X || this.trnLoctnLast.Z != vector.Z)
 				{
