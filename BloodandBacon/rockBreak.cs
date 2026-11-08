@@ -61,7 +61,7 @@ namespace Blood
 						this.velocity.Y = 0f;
 						this.gravflag = 0;
 					}
-					if (this.mytime <= 0 || Vector2.Distance(Vector2.Zero, new Vector2(this.velocity.X, this.velocity.Z)) < 0.1f)
+					if (this.mytime <= 0 || Vector2.DistanceSquared(Vector2.Zero, new Vector2(this.velocity.X, this.velocity.Z)) < 0.01f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 					{
 						this.move = true;
 						this.onramp = 7;

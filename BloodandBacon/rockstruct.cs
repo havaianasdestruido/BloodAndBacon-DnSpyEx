@@ -612,7 +612,7 @@ namespace Blood
 						}
 					}
 				}
-				if (!this.rockInst[num12].move || Vector2.Distance(new Vector2(vector.X, vector.Z), new Vector2(this.rockInst[num12].mypos.X, this.rockInst[num12].mypos.Z)) > 13000f)
+				if (!this.rockInst[num12].move || Vector2.DistanceSquared(new Vector2(vector.X, vector.Z), new Vector2(this.rockInst[num12].mypos.X, this.rockInst[num12].mypos.Z)) > 169000000f /* Bolt: Optimized by replacing expensive square root Distance calculation with DistanceSquared */)
 				{
 					this.rockInst[num12].move = false;
 					this.rockMoving.Remove(num12);

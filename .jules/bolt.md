@@ -36,3 +36,7 @@
 ## 2024-11-07 - Avoid Vector3.Length in Update Loops
 **Learning:** Checking vector magnitudes using `Vector3.Length() > limit` invokes `Math.Sqrt` which is computationally expensive and unnecessary when compared against a literal threshold. This is a common performance bottleneck in MonoGame and XNA applications.
 **Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector3.Length() > c` with `Vector3.LengthSquared() > c * c` in performance-critical code paths.
+
+## 2024-05-19 - Vector2 Distance Optimization
+**Learning:** Found multiple instances of `Vector2.Distance` being compared to literal thresholds, which induces computationally expensive `Math.Sqrt` calls.
+**Action:** When working on XNA/MonoGame projects, proactively look for opportunities to replace `Vector2.Distance(a, b) < c` with `Vector2.DistanceSquared(a, b) < c * c` in performance-critical code paths.
